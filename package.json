@@ -12,7 +12,10 @@
     "node": "15.14.0",
     "npm": "7.7.6"
   },
+  "workspaces": [
+    "./projects/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "project-react:serve": "npm run start --workspace=@project/react"
   }
 }
