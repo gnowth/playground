@@ -41,8 +41,8 @@
   "scripts": {
     "build": "react-scripts build",
     "clean:modules": "rm -f package-lock.json",
+    "develop": "react-scripts start",
     "eject": "react-scripts eject",
-    "start": "react-scripts start",
     "test": "react-scripts test"
   }
 }
