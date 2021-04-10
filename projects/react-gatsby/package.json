@@ -30,7 +30,7 @@
   "scripts": {
     "build": "gatsby build",
     "clean": "gatsby clean",
-    "clean:modules": "rm -f package-lock.json",
+    "clean:packages": "rm -f package-lock.json",
     "clean:temp": "rm -rf .cache",
     "develop": "gatsby develop",
     "docker:develop": "gatsby develop -H 0.0.0.0",
