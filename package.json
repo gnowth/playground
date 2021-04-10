@@ -17,6 +17,7 @@
     "lerna": "4.0.0"
   },
   "scripts": {
+    "clean:database": "rm -rf volumes",
     "clean:modules": "lerna clean && rm -rf node_modules",
     "clean:packages": "lerna run clean:packages && rm -f package-lock.json && npm run clean:modules",
     "clean:temp": "lerna run clean:temp",

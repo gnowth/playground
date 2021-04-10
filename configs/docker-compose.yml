@@ -1,6 +1,38 @@
 version: "3.8"
 
 services:
+  node_graphql_apollo:
+    container_name: playground_node_graphql_apollo
+    command: npm run serve
+    build:
+      context: ../projects/node-graphql-apollo
+      dockerfile: ./configs/Dockerfile
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PASSWORD
+      - POSTGRES_PORT
+      - POSTGRES_USER
+    ports:
+      - "4000:4000"
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: playground_postgres
+    image: postgres:12.4-alpine
+    restart: always
+    environment:
+      - PGDATA=/var/lib/postgresql/data
+      - POSTGRES_DB
+      - POSTGRES_PORT
+      - POSTGRES_PASSWORD
+      - POSTGRES_USER
+    ports:
+      - "5432:5432"
+    volumes:
+      - ../volumes/postgres:/var/lib/postgresql/data
+
   react:
     container_name: playground_react
     command: npm run docker:develop
@@ -10,9 +42,6 @@ services:
       dockerfile: ./configs/Dockerfile
     ports:
       - "3000:3000"
-    volumes:
-      - ../projects/react:/app
-      - /app/node_modules
 
   react_gatsby:
     container_name: playground_react_gatsby
@@ -22,6 +51,3 @@ services:
       dockerfile: ./configs/Dockerfile
     ports:
       - "8000:8000"
-    volumes:
-      - ../projects/react-gatsby:/app
-      - /app/node_modules
