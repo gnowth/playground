@@ -1,8 +1,8 @@
 version: "3.7"
 
 services:
-  postgres:
-    container_name: playground_postgres
+  dev_postgres:
+    container_name: dev_playground_postgres
     image: postgres:12.4-alpine
     restart: always
     environment:
@@ -16,8 +16,8 @@ services:
     volumes:
       - ../volumes/postgres:/var/lib/postgresql/data
 
-  node_graphql_apollo:
-    container_name: playground_node_graphql_apollo
+  dev_node_graphql_apollo:
+    container_name: dev_playground_node_graphql_apollo
     command: npm run serve
     build:
       context: ../projects/node-graphql-apollo
@@ -35,10 +35,10 @@ services:
       - /app/node_modules
       - ../.vscode:/app/.vscode
     depends_on:
-      - postgres
+      - dev_postgres
 
-  react:
-    container_name: playground_react
+  dev_react:
+    container_name: dev_playground_react
     command: npm run docker:develop
     stdin_open: true
     build:
@@ -51,8 +51,8 @@ services:
       - /app/node_modules
       - ../.vscode:/app/.vscode
 
-  react_gatsby:
-    container_name: playground_react_gatsby
+  dev_react_gatsby:
+    container_name: dev_playground_react_gatsby
     command: npm run docker:develop
     build:
       context: ../projects/react-gatsby
