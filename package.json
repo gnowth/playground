@@ -6,16 +6,22 @@
   "license": "MIT",
   "main": "index.js",
   "name": "playground",
+  "private": true,
   "repository": "https://github.com/gnowth/playground.git",
   "version": "1.0.0",
   "engines": {
     "node": "15.14.0",
     "npm": "7.7.6"
   },
-  "workspaces": [
-    "./projects/*"
-  ],
+  "dependencies": {
+    "lerna": "4.0.0"
+  },
   "scripts": {
-    "project-react:serve": "npm run start --workspace=@project/react"
+    "clean:modules": "lerna run clean:modules && lerna clean && rm -f package-lock.json && rm -rf node_modules",
+    "clean:temp": "lerna run clean:temp",
+    "lerna": "lerna",
+    "project:react": "npm --prefix projects/react run",
+    "project:react-gatsby": "yarn workspace @project/react-gatsby",
+    "setup": "npm i && lerna bootstrap"
   }
 }
