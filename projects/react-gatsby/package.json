@@ -32,8 +32,7 @@
     "clean:packages": "rm -f package-lock.json",
     "clean:temp": "rm -rf .vscode .cache public",
     "develop": "gatsby develop",
-    "docker:develop": "gatsby develop -H 0.0.0.0",
-    "docker:serve": "gatsby serve -H 0.0.0.0",
+    "docker": "gatsby develop -H 0.0.0.0",
     "serve": "gatsby serve"
   }
 }

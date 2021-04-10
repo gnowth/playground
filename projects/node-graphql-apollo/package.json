@@ -14,11 +14,9 @@
     "sequelize-cli": "6.2.0"
   },
   "scripts": {
-    "build": "echo noBuild",
     "clean:packages": "rm -f package-lock.json",
     "clean:temp": "rm -rf .vscode",
-    "docker:develop": "nodemon ./src/index.mjs",
-    "docker:serve": "nodemon ./src/index.mjs",
+    "docker": "nodemon ./src/index.mjs",
     "init": "sequelize init",
     "migration:create": "sequelize-cli model:generate",
     "migration:start": "sequelize-cli db:migrate",
