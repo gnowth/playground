@@ -19,6 +19,7 @@
   "scripts": {
     "clean:modules": "lerna run clean:modules && lerna clean && rm -f package-lock.json && rm -rf node_modules",
     "clean:temp": "lerna run clean:temp",
+    "docker-compose": "docker-compose --file ./configs/docker-compose.yml",
     "lerna": "lerna",
     "project:react": "npm --prefix projects/react run",
     "project:react-gatsby": "npm --prefix projects/react-gatsby run",

@@ -42,6 +42,7 @@
     "build": "react-scripts build",
     "clean:modules": "rm -f package-lock.json",
     "develop": "react-scripts start",
+    "docker:develop": "react-scripts start",
     "eject": "react-scripts eject",
     "test": "react-scripts test"
   }

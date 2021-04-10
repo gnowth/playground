@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  react:
+    container_name: playground_react
+    command: npm run docker:develop
+    stdin_open: true
+    build:
+      context: ../projects/react
+      dockerfile: ./configs/Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../projects/react:/app
+      - /app/node_modules
+
+  react_gatsby:
+    container_name: playground_react_gatsby
+    command: npm run docker:develop
+    build:
+      context: ../projects/react-gatsby
+      dockerfile: ./configs/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../projects/react-gatsby:/app
+      - /app/node_modules
