@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: '/react-gatsby',
   siteMetadata: {
     title: "My Gatsby Site",
   },

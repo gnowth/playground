@@ -1,0 +1,24 @@
+server {
+  listen 80;
+  listen [::]:80;
+  server_name frontend;
+
+  location ~ ^/api/(.*) {
+    proxy_pass http://node_graphql_apollo:4000;
+  }
+
+  # note that gatsby does not support pathPrefix in develop mode. it can be accessed at port 8000 instead
+  # location ~ ^/react-gatsby\b/?(.*) {
+  #   proxy_pass http://react_gatsby:8000;
+  # }
+
+  # note that /react-g will still trigger the location. need better regex
+  location ~ ^/react\b/?(.*) {
+    proxy_pass http://react:3000;
+  }
+
+  location /health-check {
+    add_header Content-Type text/plain;
+    return 200 "success";
+  }
+}
