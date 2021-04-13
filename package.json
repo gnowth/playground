@@ -26,6 +26,6 @@
     "project:react": "npm --prefix projects/react run",
     "project:react-gatsby": "npm --prefix projects/react-gatsby run",
     "setup": "npm i",
-    "setup:packages": "lerna bootstrap"
+    "setup:packages": "lerna run setup"
   }
 }

@@ -28,6 +28,7 @@
   "scripts": {
     "build": "tsc",
     "cdk": "cdk",
+    "setup": "npm install",
     "synth": "cdk synth",
     "test": "jest",
     "watch": "tsc -w"

@@ -21,6 +21,7 @@
     "migration:create": "sequelize-cli model:generate",
     "migration:start": "sequelize-cli db:migrate",
     "seed:create": "sequelize-cli seed:generate",
-    "serve": "nodemon ./src/index.mjs"
+    "serve": "nodemon ./src/index.mjs",
+    "setup": "npm install"
   }
 }

@@ -12,6 +12,10 @@ server {
   #   proxy_pass http://react_gatsby:8000;
   # }
 
+  location ~ ^/angular\b/?(.*) {
+    proxy_pass http://angular:4200;
+  }
+
   # note that /react-g will still trigger the location. need better regex
   location ~ ^/react\b/?(.*) {
     proxy_pass http://react:3000;

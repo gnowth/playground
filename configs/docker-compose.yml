@@ -26,6 +26,7 @@ services:
       - NGINX_PORT=80
     depends_on:
       - node_graphql_apollo
+      - angular
       - react
       - react_gatsby
 
@@ -49,6 +50,20 @@ services:
       - /app/node_modules
     depends_on:
       - postgres
+
+  angular:
+    container_name: playground_angular
+    command: npm run docker
+    stdin_open: true
+    build:
+      context: ../projects/angular
+      dockerfile: ./configs/Dockerfile
+    ports:
+      - "4200:4200"
+    volumes:
+      - ../projects/angular:/app:cached
+      - ../.vscode:/app/.vscode
+      - /app/node_modules
 
   react:
     container_name: playground_react
