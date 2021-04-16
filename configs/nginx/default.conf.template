@@ -21,6 +21,10 @@ server {
     proxy_pass http://react:3000;
   }
 
+  # location ~ ^/vue\b/?(.*) {
+  #   proxy_pass http://vue:8080;
+  # }
+
   location /health-check {
     add_header Content-Type text/plain;
     return 200 "success";

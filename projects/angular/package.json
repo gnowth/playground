@@ -45,7 +45,7 @@
 		"e2e": "ng e2e",
 		"lint": "ng lint",
 		"ng": "ng",
-		"setup": "npm i --legacy-peer-deps",
+		"setup": "npm install --legacy-peer-deps",
 		"start": "ng serve",
 		"test": "ng test"
 	}

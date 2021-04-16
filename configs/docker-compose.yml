@@ -21,7 +21,7 @@ services:
     volumes:
       - ./nginx:/etc/nginx/templates
     ports:
-      - "8080:80"
+      - "8880:80"
     environment:
       - NGINX_PORT=80
     depends_on:
@@ -29,6 +29,7 @@ services:
       - angular
       - react
       - react_gatsby
+      - vue
 
   node_graphql_apollo:
     container_name: playground_node_graphql_apollo
@@ -54,7 +55,6 @@ services:
   angular:
     container_name: playground_angular
     command: npm run docker
-    stdin_open: true
     build:
       context: ../projects/angular
       dockerfile: ./configs/Dockerfile
@@ -68,7 +68,6 @@ services:
   react:
     container_name: playground_react
     command: npm run docker
-    stdin_open: true
     build:
       context: ../projects/react
       dockerfile: ./configs/Dockerfile
@@ -91,5 +90,18 @@ services:
       - "8000:8000"
     volumes:
       - ../projects/react-gatsby:/app:cached
+      - ../.vscode:/app/.vscode
+      - /app/node_modules
+
+  vue:
+    container_name: playground_vue
+    command: npm run docker
+    build:
+      context: ../projects/vue
+      dockerfile: ./configs/Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../projects/vue:/app:cached
       - ../.vscode:/app/.vscode
       - /app/node_modules
