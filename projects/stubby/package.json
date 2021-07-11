@@ -1,0 +1,14 @@
+{
+  "name": "@playground/stubby",
+  "private": true,
+  "version": "0.1.0",
+  "dependencies": {
+    "stubby": "5.0.0"
+  },
+  "scripts": {
+    "clean:packages": "rm -f package-lock.json",
+    "docker": "stubby -w --data data.yaml --location 0.0.0.0",
+    "setup": "npm install",
+    "start": "stubby -w --data data.yaml"
+  }
+}
