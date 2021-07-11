@@ -1,0 +1,36 @@
+{
+  "author": "Thierry Wong",
+  "description": "Playground for next js",
+  "license": "MIT",
+  "name": "@playground/nextjs",
+  "private": true,
+  "sideEffects": false,
+  "version": "0.0.0",
+  "eslintConfig": {
+    "extends": [
+      "next",
+      "next/core-web-vitals"
+    ]
+  },
+  "dependencies": {
+    "next": "11.0.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.14",
+    "eslint-config-next": "11.0.1"
+  },
+  "scripts": {
+    "build": "next build && next export",
+    "clean:packages": "rm -f package-lock.json",
+    "clean:temp": "rimraf '{out,.next}'",
+    "dev": "next dev",
+    "docker": "next dev",
+    "lint": "npm run lint:script",
+    "lint:script": "next lint",
+    "setup": "npm install",
+    "start": "next start",
+    "typecheck": "tsc"
+  }
+}
