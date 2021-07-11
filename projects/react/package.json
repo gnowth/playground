@@ -42,8 +42,8 @@
 		"build": "react-scripts build",
 		"clean:packages": "rm -f package-lock.json",
 		"clean:temp": "rm -rf .vscode",
-		"develop": "react-scripts start",
-		"docker": "react-scripts start",
+		"develop": "PORT=3006 react-scripts start",
+		"docker": "PORT=3006 react-scripts start",
 		"eject": "react-scripts eject",
 		"setup": "npm install",
 		"test": "react-scripts test"

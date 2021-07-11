@@ -1,20 +1,52 @@
 version: "3.7"
 
 services:
-  postgres:
-    container_name: playground_postgres
-    image: postgres:12.4-alpine
-    restart: always
+  angular:
+    container_name: playground_angular
+    command: npm run docker
+    build:
+      context: ../projects/angular
+      dockerfile: ./configs/Dockerfile
+    ports:
+      - "4200:4200"
+    volumes:
+      - ../projects/angular:/app:cached
+      - ../.vscode:/app/.vscode
+      - /app/node_modules
+
+  nestjs:
+    container_name: playground_nestjs
+    command: npm run docker
+    build:
+      context: ../projects/nestjs
+      dockerfile: ./configs/Dockerfile
     environment:
-      - PGDATA=/var/lib/postgresql/data
       - POSTGRES_DB
-      - POSTGRES_PORT
+      - POSTGRES_HOST=postgres
       - POSTGRES_PASSWORD
+      - POSTGRES_PORT
       - POSTGRES_USER
     ports:
-      - "5432:5432"
+      - "4000:4000"
     volumes:
-      - ../volumes/postgres:/var/lib/postgresql/data
+      - ../projects/nestjs:/app:cached
+      - ../.vscode:/app/.vscode
+      - /app/node_modules
+    depends_on:
+      - postgres
+
+  nextjs:
+    container_name: playground_nextjs
+    command: npm run docker
+    build:
+      context: ../projects/nextjs
+      dockerfile: ./configs/Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../projects/nextjs:/app:cached
+      - ../.vscode:/app/.vscode
+      - /app/node_modules
 
   nginx:
     image: nginx:1.19.9
@@ -44,7 +76,7 @@ services:
       - POSTGRES_PORT
       - POSTGRES_USER
     ports:
-      - "4000:4000"
+      - "4001:4001"
     volumes:
       - ../projects/node-graphql-apollo:/app:cached
       - ../.vscode:/app/.vscode
@@ -52,18 +84,20 @@ services:
     depends_on:
       - postgres
 
-  angular:
-    container_name: playground_angular
-    command: npm run docker
-    build:
-      context: ../projects/angular
-      dockerfile: ./configs/Dockerfile
+  postgres:
+    container_name: playground_postgres
+    image: postgres:12.4-alpine
+    restart: always
+    environment:
+      - PGDATA=/var/lib/postgresql/data
+      - POSTGRES_DB
+      - POSTGRES_PORT
+      - POSTGRES_PASSWORD
+      - POSTGRES_USER
     ports:
-      - "4200:4200"
+      - "5432:5432"
     volumes:
-      - ../projects/angular:/app:cached
-      - ../.vscode:/app/.vscode
-      - /app/node_modules
+      - ../volumes/postgres:/var/lib/postgresql/data
 
   react:
     container_name: playground_react
@@ -74,7 +108,7 @@ services:
     environment:
       - PUBLIC_URL=react
     ports:
-      - "3000:3000"
+      - "3006:3006"
     volumes:
       - ../projects/react:/app:cached
       - ../.vscode:/app/.vscode
@@ -90,6 +124,21 @@ services:
       - "8000:8000"
     volumes:
       - ../projects/react-gatsby:/app:cached
+      - ../.vscode:/app/.vscode
+      - /app/node_modules
+
+  stubby:
+    container_name: playground_stubby
+    command: npm run docker
+    build:
+      context: ../projects/stubby
+      dockerfile: ./configs/Dockerfile
+    ports:
+      - "7443:7443"
+      - "8882:8882"
+      - "8889:8889"
+    volumes:
+      - ../projects/stubby:/app:cached
       - ../.vscode:/app/.vscode
       - /app/node_modules
 
